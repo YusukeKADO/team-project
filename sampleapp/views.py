@@ -14,7 +14,7 @@ def index(request):
     context = {
         "articles": Article.objects.all()
     }
-    return render(request, 'blog/index.html', context)
+    return render(request, 'sampleapp/index.html', context)
 
 def detail(request, article_id):
     try:
