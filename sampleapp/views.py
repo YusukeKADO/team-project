@@ -1,58 +1,27 @@
 from django.shortcuts import render, redirect
-from django.utils import timezone
+from django.http import HttpResponse
 from django.http import Http404
-
+from django.utils import timezone
+import random
 from sampleapp.models import Article
 
 # Create your views here.
-
-def apphome(request):
-    return render(request, 'teamapp/apphome.html', {})
-
 def index(request):
+    if request.method=='POST':
+        article=Article(title=request.POST['title'],body=request.POST['text'])
+        article.save()
+        return redirect(detail, article.id)
     context = {
         "articles": Article.objects.all()
     }
-    return render(request, 'teamapp/index.html', context)
-    
-    """
-    if request.method == 'GET':
-        return render(request, 'teamapp/index.html', {})
-    elif request.method == 'POST':
-        title = request.POST['title']
-        text = request.POST['task']
-        return HttpResponse('Title: {}, Task: {}'.format(title, text))
-    """
-
-def redirect_test(request):
-    return redirect(apphome)
+    return render(request, 'blog/index.html', context)
 
 def detail(request, article_id):
     try:
-        article = Article.objects.get(pk=article_id)
-    except Article.DoesNotExist:
-        raise Http404("Article does not exist.")
-    context = {
-        "article": article
-    }
-    return render(request, 'teamapp/tbd.html', context)
-
-def update(request, article_id):
-    try:
-        article = Article.objects.get(pk=article_id)
+        article=Article.objects.get(pk=article_id)
     except Article.DoesNotExist:
         raise Http404("Article does not exist")
-    context = {
-        'article': article
+    context={
+        'article':article,
     }
-    return render(request, "teamapp/edit.html", context)
-
-def delete(request, article_id):
-    try:
-        article = Article.objects.get(pk=article_id)
-    except Article.DoesNotExist:
-        raise Http404("Article does not exist")
-        
-    article.delete()
-
-    return redirect(index)
+    return render(request, "blog/detail.html", context)
