@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.http import Http404
 
-from blog.models import Article
+from sampleapp.models import Article
 
 # Create your views here.
 
@@ -38,10 +38,21 @@ def detail(request, article_id):
     return render(request, 'teamapp/tbd.html', context)
 
 def update(request, article_id):
+    try:
+        article = Article.objects.get(pk=article_id)
+    except Article.DoesNotExist:
+        raise Http404("Article does not exist")
     context = {
-        "article_id": article_id
+        'article': article
     }
-    return render(request, 'teamapp/tbd.html', context)
+    return render(request, "teamapp/edit.html", context)
 
 def delete(request, article_id):
+    try:
+        article = Article.objects.get(pk=article_id)
+    except Article.DoesNotExist:
+        raise Http404("Article does not exist")
+        
+    article.delete()
+
     return redirect(index)
