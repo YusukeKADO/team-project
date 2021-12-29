@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Profile page</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+{% block link %}
+{% endblock %}
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <nav class="navbar-header">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
+                <span class="sr-only">メニュー</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">Django sampleapp</a>
+        </div>
+        <div id="gnavi" class="collapse navbar-collapse">
+            <ul class="navbar-nav navbar-right">
+                <li><a href="{%url 'accounts:profile' request.user.username%}">Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+    {%block content%}
+
+    <!--
+    {%if articles%}
+    {%for article in articles%}
+    <a href="{%url 'detail' article.id%}">{{article.title}}</a>
+    <small>[{{article.posted_at}}]</small>
+    <div>
+      {{article.body | linebreaksbr}}
+    </div>
+    {%endfor%}
+    {%else%}
+    <p>No article.</p>
+    {%endif%}
+    -->
+
+    {%endblock%}
+
+    <!--
+    <div class="profile-card">
+        <div class="icon"></div>
+        <div class="banner"></div>
+        <ul>
+            <li>Sample Name</li>
+            <li>description here</li>
+        </ul>
+        <div class="social-media">
+            <a href=""><i class="twitter"></i></a>
+            <a href=""><i class="facebook"></i></a>
+            <a href=""><i class="instagram"></i></a>
+            <a href=""><i class="tiktok"></i></a>
+        </div>
+    </div>
+
+    <div class="image">
+        <form>
+            <input type="file", name="example", accept=".png, .jpg, .jpeg, .gif" required>
+            <button type="submit">送信</button>
+        </form>
+    </div>
+    -->
+    
+</body>

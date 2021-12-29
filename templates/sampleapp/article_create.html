@@ -1,0 +1,8 @@
+<form method="POST">
+    {%csrf_token%}
+    <p>
+        <label for="id_content"> Content:</label>
+        <textarea name="content" cols="30" rows="10" placeholder="Write here." required id="id_content"></textarea>
+    </p>
+    <button type="submit">submit</button>
+</form>
