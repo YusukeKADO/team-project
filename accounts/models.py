@@ -43,7 +43,9 @@ class UserManager(BaseUserManager):
 
         return self._create_user(username, email, password, **extra_fields)
 
+
 class User(AbstractBaseUser, PermissionsMixin):
+    objects = UserManager()
     username = models.CharField(max_length=25, unique=True)
     email = models.EmailField(unique=True)
     icon = models.ImageField(blank=True, null=True)
@@ -52,20 +54,19 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
-        help_text=_('管理サイトへのログインの可否を設定します。'),
+        help_text=_('Designates whether the user can log into this admin site.'),
     )
     is_active = models.BooleanField(
         _('active'),
-        help_text = _(
-            'このユーザーをアクティブとして扱うかどうかを指定します。'
-            'アカウントを削除する代わりに、この選択を解除してください。'
+        default=True,
+        help_text=_(
+            'Designates whether this user should be treated as active. '
+            'Unselect this instead of deleting accounts.'
         ),
     )
     date_joined = models.DateTimeField(default=timezone.now)
 
-    objects = UserManager()
-
-    EMIAL_FIELD = 'email'
+    EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 

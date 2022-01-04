@@ -1,22 +1,60 @@
 {% extends "home.html" %}
 {% load static %}
+
 {% block link %}
-<link rel="stylesheet" type="text/css" href="{% static 'accounts/user_profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/user_profile.css' %}">
+{% endblock %}
 
 {% block content %}
-<div id="profile_page">
-    <div id="user_status">
-        {% if User.icon %}
-        <img src="{{User.icon.url}}" class="user-icon">
-        {% else %}
-        <img src="{% static 'images/user_icon.png' %}" class="user-icon">
-        {% endif %}
-        <h2>{{Username.username}}</h2>
-        <p class="followBtn">Follow</p>
-    </div>
-    <div id="user_post">
-        <p class="list-t">{{Username.username}}の投稿</p>
-    </div>
-</div>
+    <div id="profile_page">
+        <div id="user_status">
+            {% if User.icon %}
+            <img src="{{User.icon.url}}" class="user-icon">
+            {% else %}
+            <img src="{% static 'images/user_icon.png' %}" class="user-icon">
+            {% endif %}
+            <h2>{{Username.username}}</h2>
+        </div>
+        
+        <div id="user_post">
+            <p class="list-t">{{User.username}} のページ</p>
+        </div>
 
+        <div id="introduction">
+            <form method="POST" class="post-form"></form>
+            {%csrf_token%}
+            {{form.as_p}}
+            <button type="submit" class="save btn btn-default"></button>
+        </div>
+
+        <div id="index">
+            <h1>Articles</h1>
+            <a href="{%url 'sampleapp:article_create'%}">投稿する</a>
+            {%if articles%}
+                {%for article in articles%}
+                {{article.title}}
+                <small>[{{article.posted_at}}]</small>
+                <div>
+                    {{article.body | linebreaksbr}}
+                </div>
+                {%endfor%}
+                {%else%}
+                <p>No article.</p>
+            {%endif%}
+
+            <h1>Media</h1>
+            {%if medias%}
+                {%for media in medias%}
+                {{media.title}}
+                <small>[{{media.posted_at}}]</small>
+                <div>
+                    {{media.image | linebreaksbr}}
+                </div>
+                {%endfor%}
+                {%else%}
+                <p>No media.</p>
+            {%endif%}
+        </div>
+
+    </div>
 {% endblock %}

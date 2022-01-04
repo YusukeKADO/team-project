@@ -11,3 +11,13 @@ def user_profile(request, username):
     }
 
     return render(request, 'accounts/user_profile.html', context)
+
+def profile(request):
+    if request.method == "POST":
+        profile = User(title=request.POST['title'], body=request.POST['text'])
+        profile.save()
+        return redirect(user_profile, profile.id)
+    context = {
+        "profiles": User.objects.all(),
+    }
+    return render(request, 'accounts/user_profile.html', context)
