@@ -26,12 +26,9 @@ def index(request):
     if request.method == "POST":
         article = Article(title=request.POST['title'], body=request.POST['text'])
         article.save()
-        media = Media(title=request.POST['title'], image=request.POST['image'])
-        media.save()
-        return redirect(detail, article.id, media.id)
+        return redirect(detail, article.id)
     context = {
         "articles": Article.objects.all(),
-        "media": Media.objects.all(),
     }
     return render(request, 'sampleapp/index.html', context)
 
