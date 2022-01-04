@@ -12,7 +12,7 @@
     </div>
     <hr>
     <p>
-      <a href="{% url 'sampleapp:index'%}">Top</a> |
+      <a href="{% url 'sampleapp:index' request.article.title%}">Top</a> |
       <a href="{%url 'sampleapp:update'%}">Edit</a> |
       <a href="{%url 'sampleapp:delete'%}">Delete</a>
     </p>
