@@ -1,16 +1,14 @@
 
 body {
-    font-family: sans-serif;
+    font-family: "メイリオ";
 }
 
 h1 {
-    border-bottom: solid 1px #17194c;
-}
-
-h2 {
-    padding: 0px 10px 0px 10px;
-    border-left: solid 4px #17194c;
-}
+    padding: 0.1em;
+    color: #010101;
+    background: #eafff5;
+    border-bottom: solid 3px #51b67e;
+  }
 
 #header {
     background-color: #17194c;
@@ -22,22 +20,8 @@ h2 {
     height: 100%;
 }
 
-#titleInput {
-    margin: 10px;
-    padding: 10px;
-    border: solid 2px#666666;
-    width: 40%;
-}
-
-#textInput {
-    margin: 10px;
-    padding: 10px;
-    border: solid 2px#666666;
-    width: 80%;
-}
-
-.text {
-    margin: 10px;
-    padding: 10px;
-    background-color: #eeeeff;
-}
+.full-page {
+    height: 100vh;
+  
+    background: #fefffc;
+  }

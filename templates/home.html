@@ -9,20 +9,20 @@
 {% block link %}
 {% endblock %}
 <body>
-    <nav class="navbar-header">
-        <div class="navbar-header">
-            <a href="#" class="navbar-brand">Django sampleapp</a>
-        </div>
-
-        <div id="gnavi" class="collapse navbar-collapse">
-            <ul class="navbar-nav navbar-right">
-                <li><a href="">Profile</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="full-page">
+        <nav class="navbar-header">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">Django sampleapp</a>
+            </div>
+            <div id="gnavi" class="collapse navbar-collapse">
+                <ul class="navbar-nav navbar-right">
+                    <li><a href="">Profile</a></li>
+                </ul>
+            </div>
+        </nav>
 
 {%block content%}
 <!-- ページごとのコンテンツ -->
 {%endblock%}
-
+    </div>
 </body>
