@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-repeat: repeat-y;
+}
+#profile_page{
+    text-align: center;
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 90em;
+    padding-top: 10%;
+}
+
+#user_status{
+    text-align: center;
+}
+.user-icon{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1.5px solid #eee;
+}
+.user-banner{
+    height: 100px;
+    width: 600px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1.5px solid #eee;
+}
+.sns{
+    padding: 0.5em 1em;
+    font-weight: bold;
+    color: lavender;
+    border: solid 3px;
+    border-radius: 10px;
+    width: 30%;
+    margin: 0 auto;
+}
+.sns-icon{
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+}
+.list-t{
+    font-size: 1.9rem;
+    font-weight: 700;
+}
+.description{
+    text-align: center;
+}

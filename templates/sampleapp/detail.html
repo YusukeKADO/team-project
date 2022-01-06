@@ -1,20 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Detail</title>
-    <meta charset="UTF-8"></head>
-  <body>
-    <h1>Django Sample Application</h1>
-    <h2>Title: {{ article.title }}</h2>
-    <small>Posted at:{{ article.posted_at }}</small>
-    <div>
+{%extends "home.html"%}
+
+{% load static %}
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
+{% endblock %}
+
+{%block content%}
+<div class="detail">
+    <h3>Title: {{ article.title }}</h3>
+    <hr>
+    <small>投稿日時:{{ article.posted_at }}</small>
+    <div class="summary">
       {{ article.body | linebreaksbr }}
     </div>
-    <hr>
     <p>
-      <a href="{% url 'sampleapp:index' request.article.title%}">Top</a> |
-      <a href="{%url 'sampleapp:update'%}">Edit</a> |
-      <a href="{%url 'sampleapp:delete'%}">Delete</a>
+      <a href="{%url 'sampleapp:index'%}">Top</a> |
+      <a href="{%url 'sampleapp:update'　article.id%}">Edit</a> |
+      <a href="{%url 'sampleapp:delete' article.id%}">Delete</a>
     </p>
-  </body>
-</html>
+</div>
+{%endblock%}

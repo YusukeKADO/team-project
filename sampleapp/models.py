@@ -17,14 +17,13 @@ class Article(models.Model):
         return self.title
 
 class Media(models.Model):
-    title = models.CharField(max_length=64)
-    image = models.ImageField(upload_to='media', blank=True, null=True)
-    link = models.CharField(max_length=200)
+    picture = models.ImageField(
+        verbose_name = 'picture',
+        upload_to = 'images/', 
+        null = True,
+    )
     posted_at = models.DateTimeField(default=timezone.now)
     
     def publish(self):
         self.posted_at = timezone.now()
         self.save()
-    
-    def __str__(self):
-        return self.title

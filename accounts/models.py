@@ -49,8 +49,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=25, unique=True)
     email = models.EmailField(unique=True)
     icon = models.ImageField(blank=True, null=True)
+    banner = models.ImageField(blank=True, null=True)
     introduction = models.CharField(max_length=75, blank=True, null=True)
     followers = models.ManyToManyField('self', blank=True, symmetrical=False)
+    Twitter_ID = models.CharField(max_length=15, unique=True, blank=True, null=True)
+    Facebook_URL = models.CharField(max_length=100, unique=True, blank=True, null=True)
+    Instagram_ID = models.CharField(max_length=15, unique=True, blank=True, null=True)
+    TikTok_ID = models.CharField(max_length=15, unique=True, blank=True, null=True)
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,

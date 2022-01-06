@@ -1,5 +1,18 @@
-<form method="POST">
-    {%csrf_token%}
-    {{form.as_p}}
-    <button type="submit">submit</button>
-</form>
+{%extends "home.html"%}
+
+{% load static %}
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/create.css' %}">
+{% endblock %}
+
+{%block content%}
+<div class="create">
+    <h1>投稿する</h1>
+    <hr>
+    <form method="POST">
+        {%csrf_token%}
+        {{form.as_p}}
+        <button type="submit">投稿</button>
+    </form>
+</div>
+{%endblock%}

@@ -1,4 +1,5 @@
 from django import forms
+from PIL import Image
 
 from .models import Article, Media
 
@@ -18,12 +19,5 @@ class ArticleCreateForm(forms.ModelForm):
             ),
         }
 
-class MediaCreateForm(forms.ModelForm):
-    class Meta:
-        model = Media
-        fields = (
-            'title',
-            'image',
-            'link',
-        )
-        widgets = {}
+class MediaCreateForm(forms.Form):
+    picture = forms.ImageField(required=True)        

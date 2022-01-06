@@ -2,59 +2,84 @@
 {% load static %}
 
 {% block link %}
-    <link rel="stylesheet" type="text/css" href="{% static 'accounts/user_profile.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/user_profile.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div id="profile_page">
-        <div id="user_status">
-            {% if User.icon %}
-            <img src="{{User.icon.url}}" class="user-icon">
-            {% else %}
-            <img src="{% static 'images/user_icon.png' %}" class="user-icon">
-            {% endif %}
-            <h2>{{Username.username}}</h2>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v12.0" nonce="7dudFN5V"></script>
+
+<div id="profile_page">
+    <div id="user_status">
+        {% if User.icon %}
+        <img src="{{User.icon.url}}" class="user-icon">
+        {% else %}
+        <img src="{% static 'images/user_icon.png' %}" class="user-icon">
+        {% endif %}
+        <!--
+        {% if User.banner %}
+        <img src="{{User.banner.url}}" class="user-banner">
+        {% else %}
+        <img src="{% static 'images/banner_silver.png' %}" class="user-banner">
+        {% endif %}
+        -->
+        <div class="description">
+            <h2>{{User.username}}</h2>        
+            <p>e-mail: {{User.email}}</p>
+            <h4>{{User.introduction}}</h4>
+        </div>
+
+        <div class="sns">
+            <p>
+            {% if User.Twitter_ID %}
+            <a href="https://twitter.com/{{User.Twitter_ID}}"><img src="{%static 'images/Twitter_icon.png'%}" class="sns-icon"></a>
+            {%else%}
+            {%endif%}
+
+            {% if User.Facebook_URL %}
+            <a href="{{User.Facebook_URL}}"><img src="{%static 'images/facebook_icon.png'%}" class="sns-icon"></a>
+            {%else%}
+            {%endif%}
+
+            {% if User.Instagram_ID %}
+            <a href="https://instagram.com/{{User.Instagram_ID}}"><img src="{%static 'images/instagram_icon.png'%}" class="sns-icon"></a>
+            {%else%}
+            {%endif%}
+
+            {% if User.TikTok_ID %}
+            <a href="https://tiktok.com/@{{User.TikTok_ID}}"><img src="{%static 'images/tiktok_icon.png'%}" class="sns-icon"></a>
+            {%else%}
+            {%endif%}
+            </p>
         </div>
         
-        <div id="user_post">
-            <p class="list-t">{{User.username}} のページ</p>
-        </div>
-
-        <div id="introduction">
-            <form method="POST" class="post-form"></form>
-            {%csrf_token%}
-            {{form.as_p}}
-            <button type="submit" class="save btn btn-default"></button>
-        </div>
-
-        <div id="index">
-            <h1>Articles</h1>
-            <a href="{%url 'sampleapp:article_create'%}">投稿する</a>
-            {%if articles%}
-                {%for article in articles%}
-                {{article.title}}
-                <small>[{{article.posted_at}}]</small>
-                <div>
-                    {{article.body | linebreaksbr}}
-                </div>
-                {%endfor%}
-                {%else%}
-                <p>No article.</p>
-            {%endif%}
-
-            <h1>Media</h1>
-            {%if medias%}
-                {%for media in medias%}
-                {{media.title}}
-                <small>[{{media.posted_at}}]</small>
-                <div>
-                    {{media.image | linebreaksbr}}
-                </div>
-                {%endfor%}
-                {%else%}
-                <p>No media.</p>
-            {%endif%}
-        </div>
-
+        <hr>
+        
     </div>
-{% endblock %}
+
+    <p></p>
+    <p></p>
+    <div id="user_social_media">
+        <div id="twitter">
+            {% if User.Twitter_ID %}
+            <h4><p>{{User.username}} のTwitter</p></h4>
+            <a class="twitter-timeline" data-width="500" data-height="400" href="https://twitter.com/{{User.Twitter_ID}}?ref_src=twsrc%5Etfw">Tweets by {{User.Twitter_ID}}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            {%else%}
+            <p>{{User.username}} のTwitterはありません。</p>
+            {% endif %}
+            <hr>
+        </div>
+        <div id="Facebook">
+            {% if User.Facebook_ID %}
+            <h4><p>{{User.username}} のFacebook</p></h4>
+            <div class="fb-page" data-href="{{User.Facebook_URL}}" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                <blockquote cite="{{User.Facebook_URL}}" class="fb-xfbml-parse-ignore"><a href="{{User.Facebook_URL}}">{{User.username}}</a></blockquote>
+            </div>
+            {%else%}
+            <p>{{User.username}} のFacebookはありません。</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{%endblock%}
