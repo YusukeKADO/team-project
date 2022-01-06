@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
+from django.utils import timezone
 
 from .forms import ArticleCreateForm, MediaCreateForm
 
@@ -70,20 +71,15 @@ def update(request, article_id):
         article = Article.objects.get(pk=article_id)
     except Article.DoesNotExist:
         raise Http404("Article does not exist.")
-    if request.method == "POST":
-        article.title = request.POST['title']
-        article.body = request.POST['text']
-        article.save()
-        return redirect(detail, article_id)
     context = {
-        "article_id": article_id
+        "article": article
     }
     return render(request, 'sampleapp/edit.html', context)
 
 def delete(request, article_id):
     try:
         article = Article.objects.get(pk=article_id)
-    except Article>DoesNotExist:
+    except Article.DoesNotExist:
         raise Http404("Article does not exist.")
     article.delete()
     

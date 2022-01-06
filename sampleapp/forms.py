@@ -11,10 +11,10 @@ class ArticleCreateForm(forms.ModelForm):
             'body',
         )
         widgets = {
-            'title':forms.Textarea(
+            'タイトル':forms.Textarea(
                 attrs = {'rows':1, 'cols':16, 'placeholder':'タイトルを入力'}
             ),
-            'body': forms.Textarea(
+            '本文': forms.Textarea(
                 attrs = {'rows':4, 'cols':16, 'placeholder':'ここに入力'}
             ),
         }

@@ -7,16 +7,17 @@
 
 {%block content%}
 <div class="detail">
-    <h3>Title: {{ article.title }}</h3>
+    <h3>タイトル: {{ article.title }}</h3>
+    <small>記事id: {{article.id}}</small>
     <hr>
-    <small>投稿日時:{{ article.posted_at }}</small>
     <div class="summary">
       {{ article.body | linebreaksbr }}
     </div>
+    <small>投稿日時:{{ article.posted_at }}</small>
     <p>
-      <a href="{%url 'sampleapp:index'%}">Top</a> |
-      <a href="{%url 'sampleapp:update'　article.id%}">Edit</a> |
-      <a href="{%url 'sampleapp:delete' article.id%}">Delete</a>
+      <a href="{%url 'sampleapp:index'%}">戻る</a> |
+      <a href="{%url 'sampleapp:update' article.id%}">編集する</a> |
+      <a href="{%url 'sampleapp:delete' article.id%}">削除する</a>
     </p>
 </div>
 {%endblock%}
