@@ -11,7 +11,7 @@
   <hr>
   {%if articles%}
     {%for article in articles%}
-      <a href="{%url 'sampleapp:detail' article.id%}">{{article.title}}</a> 
+      <a href="">{{article.title}}</a> 
       <small>[{{article.posted_at}}]</small>
       <div class="summary">
         {{article.body | linebreaksbr}}
