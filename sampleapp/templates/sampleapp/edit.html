@@ -10,11 +10,14 @@
       <div>
         <label for="titleInput">Title</label>
         <input id="titleInput" name="title" type="text"
-          placeholder="Input title" value="{{ article.title }}">
+          placeholder="Input title" value="{{ blog/templates/blog/edit.html }}">
       </div>
       <div>
         <label for="textInput">Text</label>
-        <textarea id="textInput" name="text" rows="3"> {{ article.body }}</textarea>
+        <textarea id="textInput" name="text" rows="3"> {{ <blog>
+        <templates>
+        <blog>
+        <edit class="html"></edit> }}</textarea>
       </div>
       <div>
         <button type="submit">Submit</button>
